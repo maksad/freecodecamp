@@ -1,16 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'my-calculator',
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss']
 })
-export class CalculatorComponent implements OnInit {
-  constructor() {
-    // Do stuff
+export class CalculatorComponent{
+  public stack = [];
+  public current = '';
+
+  addToStack(char: string) {
+    this.stack.push(char);
+    this.current += char;
   }
 
-  ngOnInit() {
-    console.log('Hello Calculator');
+  removeTheLast() {
+    if (this.stack.length > 0) {
+      this.stack.pop();
+    }
+    this.current = '';
+  }
+
+  empty() {
+    this.stack = [];
+    this.current = '';
+  }
+
+  displaySequence(arr: any[]): any {
+    if (arr.length > 0) {
+      return arr.join('');
+    }
+    return 0;
   }
 }

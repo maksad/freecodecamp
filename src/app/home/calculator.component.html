@@ -1,36 +1,56 @@
 <div class="calculator-holder">
   <div class="screen">
-    <div class="display">1234567890</div>
-    <div class="small-display">34*2+1234567890</div>
+    <div class="display">
+      <span *ngIf="current === ''">0</span>
+      {{ current }}
+    </div>
+    <div class="small-display">
+      {{ displaySequence(stack) }}
+    </div>
   </div>
   <div class="buttons-holder">
     <div class="row">
-      <button class="col s3">AC</button>
-      <button class="col s3">CE</button>
-      <button class="col s3">%</button>
-      <button class="col s3 orange lighten-1">/</button>
+      <button class="col s3" (click)="empty()">AC</button>
+      <button class="col s3" (click)="removeTheLast()">CE</button>
+      <button class="col s3" (click)="addToStack('&#37;')" name="percent">&#37;</button>
+      <button
+        class="col s3 orange lighten-1"
+        (click)="addToStack('&#247;')"
+        name="devision"
+      >&#247;</button>
     </div>
     <div class="row">
-      <button class="col s3">7</button>
-      <button class="col s3">8</button>
-      <button class="col s3">9</button>
-      <button class="col s3 orange lighten-1">x</button>
+      <button class="col s3" (click)="addToStack(7)">7</button>
+      <button class="col s3" (click)="addToStack(8)">8</button>
+      <button class="col s3" (click)="addToStack(9)">9</button>
+      <button
+        class="col s3 orange lighten-1"
+        (click)="addToStack('&#215;')"
+        name="multiplication"
+      >&#215;</button>
     </div>
     <div class="row">
-      <button class="col s3">4</button>
-      <button class="col s3">5</button>
-      <button class="col s3">6</button>
-      <button class="col s3 orange lighten-1">-</button>
+      <button class="col s3" (click)="addToStack(4)">4</button>
+      <button class="col s3" (click)="addToStack(5)">5</button>
+      <button class="col s3" (click)="addToStack(6)">6</button>
+      <button
+        class="col s3 orange lighten-1"
+        (click)="addToStack('&#8722;')"
+        name="subtract"
+      >&#8722;</button>
     </div>
     <div class="row">
-      <button class="col s3">1</button>
-      <button class="col s3">2</button>
-      <button class="col s3">3</button>
-      <button class="col s3 orange lighten-1">+</button>
+      <button class="col s3" (click)="addToStack(1)">1</button>
+      <button class="col s3" (click)="addToStack(2)">2</button>
+      <button class="col s3" (click)="addToStack(3)">3</button>
+      <button
+        class="col s3 orange lighten-1"
+        (click)="addToStack('&#43;')"
+      >&#43;</button>
     </div>
     <div class="row">
-      <button class="col s6">0</button>
-      <button class="col s3">,</button>
+      <button class="col s6" (click)="addToStack(0)">0</button>
+      <button class="col s3" (click)="addToStack(7)">,</button>
       <button class="col s3 orange lighten-1">=</button>
     </div>
   </div>

@@ -65,6 +65,10 @@ $orange: #f98e40;
         &:focus {
           background-color: #2ab7a9 !important;
         }
+
+        &.orange {
+          color: white;
+        }
       }
 
       &:last-child {
