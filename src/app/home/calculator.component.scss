@@ -12,13 +12,12 @@ $orange: #f98e40;
   margin: auto;
 
   .screen {
-    height: 150px;
+    height: 110px;
     background: $gray;
     border: 1px solid $gray;
     color: white;
 
-    .display,
-    .small-display {
+    .display {
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -29,12 +28,6 @@ $orange: #f98e40;
       height: 100px;
       font-size: 62px;
       padding-top: 50px;
-    }
-
-    .small-display {
-      height: 50px;
-      font-size: 22px;
-      color: $gray-light;
     }
   }
 
@@ -76,8 +69,4 @@ $orange: #f98e40;
       }
     }
   }
-}
-
-* {
-  // outline: 1px solid red;
 }
