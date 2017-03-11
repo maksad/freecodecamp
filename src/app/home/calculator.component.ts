@@ -14,7 +14,10 @@ export class CalculatorComponent {
   private listOfOperations = ['%', '/', '+', '-', '*'];
 
   appendChar(char: string) {
-    if (this._isSymbol(this.current)) {
+    if (
+      this._isSymbol(this.current) ||
+      !this._isSymbol(this.current) && this.current === '0'
+    ) {
       this.current = '';
     }
 
