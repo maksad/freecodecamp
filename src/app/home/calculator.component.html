@@ -1,0 +1,69 @@
+<div class="calculator-holder">
+  <div class="screen">
+    <div class="display">
+      <span *ngIf="current === '' && result === ''">0</span>
+      <span *ngIf="result === ''">{{ current }}</span>
+      <span *ngIf="result !== ''">{{ result }}</span>
+    </div>
+  </div>
+  <div class="buttons-holder">
+    <div class="row">
+      <button class="col s3" (click)="empty()">AC</button>
+      <button class="col s3" (click)="resetCurrent()">CE</button>
+      <button
+        class="col s3"
+        (click)="calculatePercent('%')"
+        name="percent"
+      >&#37;</button>
+      <button
+        class="col s3 orange lighten-1"
+        (click)="addOperation('/')"
+        name="devision"
+      >&#247;</button>
+    </div>
+    <div class="row">
+      <button class="col s3" (click)="appendChar('7')">7</button>
+      <button class="col s3" (click)="appendChar('8')">8</button>
+      <button class="col s3" (click)="appendChar('9')">9</button>
+      <button
+        class="col s3 orange lighten-1"
+        (click)="addOperation('*')"
+        name="multiplication"
+      >&#215;</button>
+    </div>
+    <div class="row">
+      <button class="col s3" (click)="appendChar('4')">4</button>
+      <button class="col s3" (click)="appendChar('5')">5</button>
+      <button class="col s3" (click)="appendChar('6')">6</button>
+      <button
+        class="col s3 orange lighten-1"
+        (click)="addOperation('-')"
+        name="subtract"
+      >&#8722;</button>
+    </div>
+    <div class="row">
+      <button class="col s3" (click)="appendChar('1')">1</button>
+      <button class="col s3" (click)="appendChar('2')">2</button>
+      <button class="col s3" (click)="appendChar('3')">3</button>
+      <button
+        class="col s3 orange lighten-1"
+        (click)="addOperation('&#43;')"
+      >&#43;</button>
+    </div>
+    <div class="row">
+      <button class="col s6" (click)="appendChar('0')">0</button>
+      <button class="col s3" (click)="appendChar('.')">.</button>
+      <button
+        class="col s3 orange lighten-1"
+        (click)="validateAndCalculate()"
+      >=</button>
+    </div>
+  </div>
+
+  <div class="author-caption">
+    Created by
+    <a href="https://twitter.com/donayorov" target="_blank">
+      Maksad D.
+    </a>
+  </div>
+</div>

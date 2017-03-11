@@ -2,7 +2,7 @@ dist: trusty
 sudo: required
 language: node_js
 node_js:
-  - "5"
+  - "6.4.0"
 os:
   - linux
 env:
@@ -15,6 +15,4 @@ before_script:
 install:
   - npm install
 script:
-  - npm run lint
-  - npm run test:once
-  - npm run e2e
+  - npm run test
