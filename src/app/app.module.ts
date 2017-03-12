@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { CalculatorComponent } from './home/calculator.component';
+import { CalculatorComponent } from './calculator/calculator.component';
 import { ApiService } from './shared';
 import { routing } from './app.routing';
 
