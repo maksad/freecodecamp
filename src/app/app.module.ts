@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { CalculatorComponent } from './calculator/calculator.component';
 import { ApiService } from './shared';
 import { routing } from './app.routing';
+
+import { AppComponent } from './app.component';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { PomodoroComponent } from './pomodoro/pomodoro.component';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
@@ -22,6 +24,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     AppComponent,
     CalculatorComponent,
     HomeComponent,
+    PomodoroComponent
   ],
   providers: [
     ApiService
