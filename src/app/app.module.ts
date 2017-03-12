@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -20,6 +21,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
   declarations: [
     AppComponent,
     CalculatorComponent,
+    HomeComponent,
   ],
   providers: [
     ApiService
