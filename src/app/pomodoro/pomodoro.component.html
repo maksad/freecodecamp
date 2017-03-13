@@ -3,25 +3,26 @@
     <div class="buttons row">
       <div class="buttons-holder col s6">
         <div class="break center">
-          <button>-</button>
-          <p>5</p>
-          <button>+</button>
+          <button (click)="reduceBreakTime()">-</button>
+          <p>{{ breakTime }}</p>
+          <button (click)="increaseBreakTime()">+</button>
         </div>
       </div>
       <div class="buttons-holder col s6">
         <div class="session center">
-          <button>-</button>
-          <p>25</p>
-          <button>+</button>
+          <button (click)="reduceSessionTime()">-</button>
+          <p>{{ sessionTime }}</p>
+          <button (click)="increaseSessionTime()">+</button>
         </div>
       </div>
     </div>
 
     <div class="pomodoro-hoder center">
-      <div class="circle">
+      <div class="circle" (click)="startCountDown(sessionTime, breakTime)">
         <div class="smaller-circle circle">
           <p class="title">Session</p>
-          <p class="timer">22:14</p>
+          <p class="timer" *ngIf="countDownTimer === 0">{{ sessionTime }}:00</p>
+          <p class="timer" *ngIf="countDownTimer != 0">{{ countDownTimer }}</p>
         </div>
       </div>
     </div>

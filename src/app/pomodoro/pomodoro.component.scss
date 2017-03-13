@@ -40,21 +40,25 @@
     height: 300px;
     margin: auto;
 
+
     .circle {
       height: 100%;
       width: 100%;
       border: 4px solid #308D35;
 
+      &:hover {
+        cursor: pointer;
+      }
+
       .title,
       .timer {
-        font-size: 35px;
-        padding: 0;
-        margin: 0;
+        font-size: 45px;
+        // padding: 0;
+        // margin: 0;
       }
 
       .smaller-circle {
         border-color: #4f515b;
-        padding-top: 40%;
       }
     }
   }
