@@ -21,8 +21,7 @@
       <div class="circle" (click)="startCountDown(sessionTime, breakTime)">
         <div class="smaller-circle circle">
           <p class="title">Session</p>
-          <p class="timer" *ngIf="countDownTimer === 0">{{ sessionTime }}:00</p>
-          <p class="timer" *ngIf="countDownTimer != 0">{{ countDownTimer }}</p>
+          <p class="timer">{{ countDownTimer }}</p>
         </div>
       </div>
     </div>
