@@ -9,8 +9,12 @@ export class PomodoroComponent {
   public breakTime = 2;
   public sessionTime = 1;
   public countDownTimer = '01:00';
+  private initialValues = {break: 2, session: 1};
   private clockStatus = 'paused';
   private intervalId: any;
+  public cycles = 0;
+  public fillPercentage = 0;
+  public process = 'session';
 
   reduceBreakTime() {
     if (this.breakTime > 1 && this.clockStatus === 'paused') {
@@ -40,27 +44,34 @@ export class PomodoroComponent {
     }
   }
 
-  startCountDown(sessionTime: number, breakTime: number) {
+  startCountDown(current: string, sessionTime: number, breakTime: number) {
     let minutes = sessionTime;
     let seconds = 0;
-    let process = 'session';
-    const that = this;
+
+    if (this._valuesChanged(sessionTime, breakTime)) {
+      this.initialValues.session = sessionTime;
+      this.initialValues.session = breakTime;
+    } else {
+      minutes = Number(current.split(':')[0]);
+      seconds = Number(current.split(':')[1]);
+    }
 
     this.clockStatus = this._getClockStatus();
     if (this.clockStatus === 'ticking') {
-      this.intervalId = setInterval(startTimer, 1000);
+      this.intervalId = setInterval(startTimer.bind(this), 1000);
     } else {
       clearInterval(this.intervalId);
     }
 
     function startTimer() {
       if (minutes === 0 && seconds === 0) {
-        if (process === 'session') {
-          process = 'break';
+        if (this.process === 'session') {
+          this.process = 'break';
           minutes = breakTime;
+          this.cycles += 1;
         } else {
           minutes = sessionTime;
-          process = 'session';
+          this.process = 'session';
         }
       }
 
@@ -75,8 +86,20 @@ export class PomodoroComponent {
       minutes = dt2.getMinutes();
       seconds = dt2.getSeconds();
 
-      that.countDownTimer = ts[1] + ':' + ts[2];
+      this.countDownTimer = ts[1] + ':' + ts[2];
+      this.fillPercentage = this._getFillPercentage(
+        this.process === 'session' ? sessionTime * 60 : breakTime * 60,
+        Number(ts[1]) * 60 + Number(ts[2])
+      );
     }
+  }
+
+  counter(num: number): number[] {
+    const arr = [];
+    for (let index = 0; index < num; index++) {
+      arr.push(index);
+    }
+    return arr;
   }
 
   _getClockStatus() {
@@ -86,5 +109,15 @@ export class PomodoroComponent {
   _setCountDownTimer(mins: number) {
     const minutes = mins < 10 ? '0' + String(mins) : mins;
     this.countDownTimer = minutes + ':' + '00';
+  }
+
+  _valuesChanged(sessionTime, breakTime): boolean {
+    return sessionTime !== this.initialValues.session ||
+      breakTime !== this.initialValues.break;
+  }
+
+  _getFillPercentage(total: number, current: number): number {
+    const result = 100 - (current * 100) / total;
+    return Math.round(result);
   }
 }

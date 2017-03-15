@@ -18,14 +18,24 @@
     </div>
 
     <div class="pomodoro-hoder center">
-      <div class="circle" (click)="startCountDown(sessionTime, breakTime)">
+      <div
+        class="circle"
+        (click)="startCountDown(countDownTimer, sessionTime, breakTime)"
+      >
+        <div
+          class="background-gradient {{ process }}"
+          [ngStyle]="{'height.%': fillPercentage}"
+        ></div>
         <div class="smaller-circle circle">
-          <p class="title">Session</p>
+          <p class="title">{{ process }}</p>
           <p class="timer">{{ countDownTimer }}</p>
         </div>
       </div>
     </div>
 
+    <ul class="cycles">
+      <li *ngFor="let cycle of counter(cycles)" class="circle"></li>
+    </ul>
     <div class="author-caption center">
       Created by
       <a href="https://twitter.com/donayorov" target="_blank">
