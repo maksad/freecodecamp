@@ -1,0 +1,46 @@
+<div class="pomodoro-wrapper">
+  <div class="wrapper">
+    <div class="buttons row">
+      <div class="buttons-holder col s6">
+        <div class="break center">
+          <button (click)="reduceBreakTime()">-</button>
+          <p>{{ breakTime }}</p>
+          <button (click)="increaseBreakTime()">+</button>
+        </div>
+      </div>
+      <div class="buttons-holder col s6">
+        <div class="session center">
+          <button (click)="reduceSessionTime()">-</button>
+          <p>{{ sessionTime }}</p>
+          <button (click)="increaseSessionTime()">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pomodoro-hoder center">
+      <div
+        class="circle"
+        (click)="startCountDown(countDownTimer, sessionTime, breakTime)"
+      >
+        <div
+          class="background-gradient {{ process }}"
+          [ngStyle]="{'height.%': fillPercentage}"
+        ></div>
+        <div class="smaller-circle circle">
+          <p class="title">{{ process }}</p>
+          <p class="timer">{{ countDownTimer }}</p>
+        </div>
+      </div>
+    </div>
+
+    <ul class="cycles">
+      <li *ngFor="let cycle of counter(cycles)" class="circle"></li>
+    </ul>
+    <div class="author-caption center">
+      Created by
+      <a href="https://twitter.com/donayorov" target="_blank">
+        Maksad D.
+      </a>
+    </div>
+  </div>
+</div>
