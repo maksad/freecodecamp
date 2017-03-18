@@ -1,7 +1,5 @@
-$gray: #969696;
-$gray-dark: #403f3f;
-$gray-light: #e6e6e6;
-$orange: #f98e40;
+$green: #1eb579;
+$beige-light: #f9f5ed;
 
 .tic-tac-toe {
   display: flex;
@@ -9,30 +7,47 @@ $orange: #f98e40;
   align-items: center;
   height: 100vh;
   font-family: "Roboto", sans-serif;
+  background-color: #1DD189;
 
-  ul {
-    background-color: $gray-light;
-    width: 300px;
-    margin: auto;
-    height: 300px;
+  .buttons.row {
+    text-align: center;
 
-    li {
-      list-style-type: none;
-      height: 100px;
-      width: 100px;
-      float: left;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 70px;
-      font-weight: 100;
-      outline: 1px solid $gray;
+    button.col {
+      float: none;
+      border: none;
+      font-size: 29px;
+      color: $beige-light;
+      border-bottom: 2px solid rgba(249, 245, 237, 0.36);
+      background: transparent;
+      margin: 14px;
+      margin-bottom: 30px;
+    }
+  }
 
-      [type="checkbox"]:not(:checked),
-      [type="checkbox"]:checked {
-        display: inline;
-        position: static;
-        opacity: 1;
+  table {
+    tr {
+      &:nth-child(2) {
+        border: 5px solid $green;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      td {
+        border: none;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        color: #1B2D3D;
+        color: $beige-light;
+        font-size: 70px;
+        font-weight: 300;
+        padding: 0;
+
+        &:nth-child(2) {
+          border: 5px solid $green;
+          border-top: 0;
+          border-bottom: 0;
+        }
       }
     }
   }
