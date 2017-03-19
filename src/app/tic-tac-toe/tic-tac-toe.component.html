@@ -1,26 +1,33 @@
 <div class="tic-tac-toe">
   <div class="holder">
     <div class="row buttons">
-      <button class="col s4">x</button>
-      <button class="col s4">o</button>
+      <button class="col s4" [ngClass]="{'active': this.turn === 'x'}">x</button>
+      <button class="col s4" [ngClass]="{'active': this.turn === 'o'}">o</button>
     </div>
 
     <table>
       <tr>
-        <td>x</td>
-        <td>x</td>
-        <td>o</td>
+        <td (click)="makeAMove($event, 1)"></td>
+        <td (click)="makeAMove($event, 2)"></td>
+        <td (click)="makeAMove($event, 3)"></td>
       </tr>
       <tr>
-        <td>o</td>
-        <td>x</td>
-        <td>x</td>
+        <td (click)="makeAMove($event, 4)"></td>
+        <td (click)="makeAMove($event, 5)"></td>
+        <td (click)="makeAMove($event, 6)"></td>
       </tr>
       <tr>
-        <td>x</td>
-        <td>o</td>
-        <td>o</td>
+        <td (click)="makeAMove($event, 7)"></td>
+        <td (click)="makeAMove($event, 8)"></td>
+        <td (click)="makeAMove($event, 9)"></td>
       </tr>
     </table>
+
+    <div class="row buttons">
+      <button
+        class="col s4 restart"
+        (click)="restart()"
+      >restart</button>
+    </div>
   </div>
 </div>
