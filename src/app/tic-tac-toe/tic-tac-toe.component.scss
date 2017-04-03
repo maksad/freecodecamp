@@ -47,12 +47,16 @@ $beige-light: #f9f5ed;
         width: 100px;
         height: 100px;
         text-align: center;
-        color: #1B2D3D;
-        color: $beige-light;
+        color: $beige-light;;
         font-size: 70px;
         font-weight: 300;
         padding: 0;
         line-height: 0;
+
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
 
         &:hover {
           cursor: default;
@@ -64,6 +68,19 @@ $beige-light: #f9f5ed;
           border-bottom: 0;
         }
       }
+
+      .o-symbol {
+        color: #ED6B6B;
+      }
+    }
+  }
+
+  .table-wrapper,
+  .choose-symbol {
+    opacity: 0;
+
+    &.active {
+      opacity: 1;
     }
   }
 }

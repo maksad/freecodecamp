@@ -11,7 +11,7 @@ export class State {
   }
 
   nextTurn(): void {
-    this.turn = this.turn === 'x' ? 'o' : 'x';
+    this.turn = this.turn === 'X' ? 'O' : 'X';
   }
 
   emptyCells(): number[] {
@@ -77,7 +77,7 @@ export class State {
     let isVictory = false;
     for (let i = 0; i <= 2 ; i++) {
       if (
-        this.board[i] !== 'E' &&
+        this.board[i] !== '' &&
         this.board[i] === this.board[i + 3] &&
         this.board[i + 3] === this.board[i +   6]
       ) {
@@ -92,7 +92,7 @@ export class State {
     let isVictory = false;
     for (let i = 0, j = 4; i <= 2 ; i = i + 2, j = j - 2) {
       if (
-        this.board[i] !== 'E' &&
+        this.board[i] !== '' &&
         this.board[i] === this.board[i + j] &&
         this.board[i + j] === this.board[i + 2 * j]
       ) {

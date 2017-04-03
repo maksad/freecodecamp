@@ -1,3 +1,5 @@
+import { UtilService } from './Util.service';
+import { Game } from './Game';
 import { State } from './State';
 
 export class AiAction {
@@ -32,7 +34,7 @@ export class AiAction {
     const next = new State(state);
     next.board[this.movePosition] = state.turn;
 
-    if (state.turn === 'o') {
+    if (state.turn === 'O') {
       next.oMovesCount++;
     }
 
@@ -42,7 +44,8 @@ export class AiAction {
 }
 
 export class Ai {
-  game: {};
+  game: Game;
+  utils = new UtilService();
 
   _minimaxValue(state: State) {
     if (state.isVictory()) {
@@ -50,7 +53,7 @@ export class Ai {
     } else {
       let stateScore: number;
 
-      if (state.turn === 'x') {
+      if (state.turn === 'X') {
         stateScore = -1000;
       } else {
         stateScore = 1000;
@@ -65,7 +68,7 @@ export class Ai {
 
       availableNextStates.forEach((nextState: State) => {
         const nextScore = this._minimaxValue(nextState);
-        if (state.turn === 'x') {
+        if (state.turn === 'X') {
           if (nextScore > stateScore) {
             stateScore = nextScore;
           }
@@ -92,7 +95,7 @@ export class Ai {
     let available = this.game.currentState.emptyCells();
     let availableActions = this._getAvailableActions(available);
 
-    if (turn === 'x') {
+    if (turn === 'X') {
       availableActions.sort(AiAction.descending);
     } else {
       availableActions.sort(AiAction.ascending);
@@ -100,7 +103,7 @@ export class Ai {
 
     let chosenAction = availableActions[0];
     let next = chosenAction.applyTo(this.game.currentState);
-    UI.insertAt(chosenAction.movePosition, turn);
+    this.utils.insertAt(chosenAction.movePosition, turn);
     this.game.advanceTo(next);
   }
 

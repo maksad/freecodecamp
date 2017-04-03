@@ -1,9 +1,11 @@
+import { UtilService } from './Util.service';
 import { State } from './State';
 
 export class Game {
   public ai: any;
   public currentState: State;
   public status: string;
+  utils = new UtilService();
 
   static score(_state: State): number {
     if (_state.status === 'X is the winner!') {
@@ -15,7 +17,7 @@ export class Game {
     }
   }
 
-  constructor(autoPlayer: any) {
+  constructor(autoPlayer: any, turn: string) {
     this.ai = autoPlayer;
     this.currentState = new State();
     this.currentState.board = [
@@ -23,7 +25,7 @@ export class Game {
       '', '', '',
       '', '', ''
     ];
-    this.currentState.turn = 'x';
+    this.currentState.turn = turn;
     this.status = 'begining';
   }
 
@@ -31,18 +33,9 @@ export class Game {
     this.currentState = _state;
     if (_state.isVictory()) {
       this.status = 'ended';
-      if (_state.status === 'X is the winner!') {
-        UI.switchViewTo('won');
-      } else if (_state.status === 'O is the winner!') {
-        UI.switchViewTo('lost');
-      } else {
-        UI.switchViewTo('draw');
-      }
+      this.utils.displayMessage(_state.status);
     } else {
-      if (this.currentState.turn === 'X') {
-        UI.switchViewTo('human');
-      } else {
-        UI.switchViewTo('robot');
+      if (this.currentState.turn === 'O') {
         this.ai.notify('O');
       }
     }
