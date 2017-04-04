@@ -10,6 +10,7 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { PomodoroComponent } from './pomodoro/pomodoro.component';
+import { TicTacToeComponent } from './tic-tac-toe/tic-tac-toe.component';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
@@ -24,7 +25,8 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     AppComponent,
     CalculatorComponent,
     HomeComponent,
-    PomodoroComponent
+    PomodoroComponent,
+    TicTacToeComponent
   ],
   providers: [
     ApiService

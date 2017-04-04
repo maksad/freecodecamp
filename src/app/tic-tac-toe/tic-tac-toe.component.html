@@ -1,0 +1,38 @@
+<div class="tic-tac-toe">
+  <div class="holder">
+    <div class="row buttons choose-symbol" [ngClass]="{'active': !tableIsVisible}">
+      <h3>choose X or O</h3>
+      <button class="col s4" (click)="setPlayerSymbol('X')">X</button>
+      <button class="col s4" (click)="setPlayerSymbol('O')">O</button>
+    </div>
+
+    <div id="message"></div>
+
+    <div class="table-wrapper" [ngClass]="{'active': tableIsVisible}">
+      <table>
+        <tr>
+          <td (click)="makeAMove($event, 0)"></td>
+          <td (click)="makeAMove($event, 1)"></td>
+          <td (click)="makeAMove($event, 2)"></td>
+        </tr>
+        <tr>
+          <td (click)="makeAMove($event, 3)"></td>
+          <td (click)="makeAMove($event, 4)"></td>
+          <td (click)="makeAMove($event, 5)"></td>
+        </tr>
+        <tr>
+          <td (click)="makeAMove($event, 6)"></td>
+          <td (click)="makeAMove($event, 7)"></td>
+          <td (click)="makeAMove($event, 8)"></td>
+        </tr>
+      </table>
+
+      <div class="row buttons">
+        <button
+          class="col s4 restart"
+          (click)="restart()"
+        >restart</button>
+      </div>
+    </div>
+  </div>
+</div>
