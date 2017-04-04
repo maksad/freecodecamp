@@ -34,7 +34,7 @@ export class AiAction {
     const next = new State(state);
     next.board[this.movePosition] = state.turn;
 
-    if (state.turn === 'O') {
+    if (state.turn === 'ai') {
       next.oMovesCount++;
     }
 
@@ -53,7 +53,7 @@ export class Ai {
     } else {
       let stateScore: number;
 
-      if (state.turn === 'X') {
+      if (state.turn === 'player') {
         stateScore = -1000;
       } else {
         stateScore = 1000;
@@ -68,7 +68,7 @@ export class Ai {
 
       availableNextStates.forEach((nextState: State) => {
         const nextScore = this._minimaxValue(nextState);
-        if (state.turn === 'X') {
+        if (state.turn === 'player') {
           if (nextScore > stateScore) {
             stateScore = nextScore;
           }
@@ -95,7 +95,7 @@ export class Ai {
     let available = this.game.currentState.emptyCells();
     let availableActions = this._getAvailableActions(available);
 
-    if (turn === 'X') {
+    if (turn === 'player') {
       availableActions.sort(AiAction.descending);
     } else {
       availableActions.sort(AiAction.ascending);
@@ -103,7 +103,7 @@ export class Ai {
 
     let chosenAction = availableActions[0];
     let next = chosenAction.applyTo(this.game.currentState);
-    this.utils.insertAt(chosenAction.movePosition, turn);
+    this.utils.insertAt(chosenAction.movePosition, this.game.aiSymbol);
     this.game.advanceTo(next);
   }
 

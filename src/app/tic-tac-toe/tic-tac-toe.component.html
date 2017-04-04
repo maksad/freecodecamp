@@ -1,10 +1,12 @@
 <div class="tic-tac-toe">
   <div class="holder">
     <div class="row buttons choose-symbol" [ngClass]="{'active': !tableIsVisible}">
-      <h3>Choose X or O</h3>
+      <h3>choose X or O</h3>
       <button class="col s4" (click)="setPlayerSymbol('X')">X</button>
       <button class="col s4" (click)="setPlayerSymbol('O')">O</button>
     </div>
+
+    <div id="message"></div>
 
     <div class="table-wrapper" [ngClass]="{'active': tableIsVisible}">
       <table>
@@ -24,8 +26,6 @@
           <td (click)="makeAMove($event, 8)"></td>
         </tr>
       </table>
-
-      <div id="message"></div>
 
       <div class="row buttons">
         <button

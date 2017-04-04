@@ -34,6 +34,17 @@ $beige-light: #f9f5ed;
     }
   }
 
+  #message {
+    margin: 30px 0;
+    font-size: 28px;
+    color: #557592;
+    height: 43px;
+  }
+
+  h3 {
+    color: #557592;
+  }
+
   table {
     tr {
       &:nth-child(2) {
@@ -78,9 +89,14 @@ $beige-light: #f9f5ed;
   .table-wrapper,
   .choose-symbol {
     opacity: 0;
+    height: 0;
+    position: relative;
+    z-index: -999;
 
     &.active {
       opacity: 1;
+      height: 100%;
+      z-index: 2;
     }
   }
 }

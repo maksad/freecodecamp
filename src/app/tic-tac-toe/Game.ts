@@ -5,19 +5,26 @@ export class Game {
   public ai: any;
   public currentState: State;
   public status: string;
+  public playerSymbol: string;
+  public aiSymbol: string;
   utils = new UtilService();
 
   static score(_state: State): number {
-    if (_state.status === 'X is the winner!') {
+    if (_state.status === 'player is the winner!') {
       return 10 - _state.oMovesCount;
-    } else if (_state.status === 'X is the winner!') {
+    } else if (_state.status === 'player is the winner!') {
       return - 10 + _state.oMovesCount;
     } else {
       return 0;
     }
   }
 
-  constructor(autoPlayer: any, turn: string) {
+  constructor(
+    autoPlayer: any,
+    turn: string,
+    playerSymbol: string,
+    aiSymbol: string
+  ) {
     this.ai = autoPlayer;
     this.currentState = new State();
     this.currentState.board = [
@@ -25,6 +32,8 @@ export class Game {
       '', '', '',
       '', '', ''
     ];
+    this.playerSymbol = playerSymbol;
+    this.aiSymbol = aiSymbol;
     this.currentState.turn = turn;
     this.status = 'begining';
   }
@@ -35,8 +44,8 @@ export class Game {
       this.status = 'ended';
       this.utils.displayMessage(_state.status);
     } else {
-      if (this.currentState.turn === 'O') {
-        this.ai.notify('O');
+      if (this.currentState.turn === 'ai') {
+        this.ai.notify('ai');
       }
     }
   }

@@ -11,7 +11,7 @@ export class State {
   }
 
   nextTurn(): void {
-    this.turn = this.turn === 'X' ? 'O' : 'X';
+    this.turn = this.turn === 'player' ? 'ai' : 'player';
   }
 
   emptyCells(): number[] {
@@ -66,7 +66,7 @@ export class State {
         this.board[i] === this.board[i + 1] &&
         this.board[i + 1] === this.board[i +   2]
       ) {
-        this._setStatus(this.board[i].toUpperCase());
+        this._setStatus(this.board[i]);
         isVictory = true;
       }
     }
@@ -81,7 +81,7 @@ export class State {
         this.board[i] === this.board[i + 3] &&
         this.board[i + 3] === this.board[i +   6]
       ) {
-        this._setStatus(this.board[i].toUpperCase());
+        this._setStatus(this.board[i]);
         isVictory = true;
       }
     }
@@ -96,7 +96,7 @@ export class State {
         this.board[i] === this.board[i + j] &&
         this.board[i + j] === this.board[i + 2 * j]
       ) {
-        this._setStatus(this.board[i].toUpperCase());
+        this._setStatus(this.board[i]);
         isVictory = true;
       }
     }
