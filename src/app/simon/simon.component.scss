@@ -1,0 +1,76 @@
+$main-width: 500px;
+$main-height: 500px;
+$border-width: 10px;
+$grey: #4a4a4a;
+
+.simon-game {
+  display: flex;
+  height: 100vh;
+
+  .wrapper {
+    width: $main-width;
+    height: $main-width;
+    margin: auto;
+  }
+
+  .holder {
+    width: $main-width;
+    height: $main-width;
+    border-radius: 100%;
+    display: block;
+    overflow: hidden;
+    background: #4a4a4a;
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .holder-circle-buttons {
+    border-radius: 100%;
+    overflow: hidden;
+    width: 460px;
+    height: 460px;
+    display: inline-block;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .buttons-row {
+      // height: ($main-height - 4 * $border-width)/2;
+      height: 220px;
+      width: ($main-width - 4 * $border-width);
+      display: flex;
+      justify-content: space-between;
+
+      .circle-button {
+        height: 100%;
+        width: 220px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .center-holder {
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    border-radius: 100%;
+    background: #4a4a4a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .center-circle {
+      width: 215px;
+      height: 215px;
+      background: #f5f5f5;
+      border-radius: 100%;
+    }
+  }
+}
