@@ -50,7 +50,13 @@ $grey: #4a4a4a;
         width: 220px;
 
         &:hover {
-          cursor: pointer;
+          cursor: auto;
+        }
+
+        &.is-clickable {
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
@@ -112,14 +118,54 @@ $grey: #4a4a4a;
           dd {
             margin: 0px;
           }
+
+          button {
+            cursor: auto;
+
+            &.active {
+              outline: none;
+              background-color: #2ab7a9;
+            }
+
+            &.strict {
+              background-color: #c0c0c0;
+
+              &.is-strict {
+                background: #2ab7a9;
+              }
+            }
+
+            &.is-on {
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
         }
 
         .power {
+          .switch label .lever {
+            border-radius: 0px;
+            width: 46px;
+            margin: 0 9px;
+
+            &::after {
+              box-shadow: none;
+              height: 13px;
+              border-radius: 0px;
+              top: 1px;
+            }
+          }
+
           button {
             background: transparent;
             border: none;
             padding: 0px;
             line-height: 0;
+
+            &.is-on {
+              color: red;
+            }
           }
         }
       }

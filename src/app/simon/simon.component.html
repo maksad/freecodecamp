@@ -3,12 +3,28 @@
     <div class="holder">
       <div class="holder-circle-buttons">
         <div class="buttons-row">
-          <div class="circle-button green"></div>
-          <div class="circle-button red"></div>
+          <div
+            [ngClass]="{'is-clickable': isClickable}"
+            class="circle-button green"
+            (click)="takeStep(1)"
+          ></div>
+          <div
+            [ngClass]="{'is-clickable': isClickable}"
+            class="circle-button red"
+            (click)="takeStep(2)"
+          ></div>
         </div>
         <div class="buttons-row">
-          <div class="circle-button yellow"></div>
-          <div class="circle-button blue"></div>
+          <div
+            [ngClass]="{'is-clickable': isClickable}"
+            class="circle-button yellow"
+            (click)="takeStep(3)"
+          ></div>
+          <div
+            [ngClass]="{'is-clickable': isClickable}"
+            class="circle-button blue"
+            (click)="takeStep(4)"
+          ></div>
         </div>
       </div>
 
@@ -18,22 +34,56 @@
           <div class="settings">
             <div>
               <dl>
-                <dt><span class="counter">--</span></dt>
+                <dt>
+                  <span *ngIf="steps.length === 0" class="counter">--</span>
+                  <span
+                    *ngIf="steps.length > 0 && status === 'progress'"
+                    class="counter"
+                  >{{steps.length}}</span>
+                  <span
+                    *ngIf="steps.length > 0 && status === 'mistake'"
+                    class="counter"
+                  >!!</span>
+                  <span
+                    *ngIf="steps.length > 0 && status === 'victory'"
+                    class="counter"
+                  >**</span>
+                </dt>
                 <dd>counter</dd>
               </dl>
 
               <dl>
-                <dt><button class="start"></button></dt>
+                <dt>
+                  <button
+                    [ngClass]="{'is-on': isOn}"
+                    class="start"
+                    (click)="start()"
+                  ></button>
+                </dt>
                 <dd>start</dd>
               </dl>
 
               <dl>
-                <dt><button class="strict"></button></dt>
+                <dt>
+                  <button
+                    class="strict"
+                    [ngClass]="{'is-on': isOn, 'is-strict': isStrict}"
+                    (click)="toggleStrict()"
+                  ></button>
+                </dt>
                 <dd>strict</dd>
               </dl>
             </div>
+
             <div class="power">
-              <button><i class="material-icons">power_settings_new</i></button>
+              <div class="switch">
+                <label>
+                  off
+                  <input type="checkbox">
+                  <span class="lever" (click)="power()"></span>
+                  on
+                </label>
+              </div>
               </div>
           </div>
         </div>
