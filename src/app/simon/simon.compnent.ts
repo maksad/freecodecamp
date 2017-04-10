@@ -27,6 +27,7 @@ export class SimonComponent {
   }
 
   resetOnStart(): void {
+    this.removeAllActiveClasses();
     this.isClickable = false;
     this.steps = [];
     this.status = 'progress';
@@ -43,6 +44,13 @@ export class SimonComponent {
     this.isOn = false;
   }
 
+  removeAllActiveClasses(): void {
+    const elements = document.body.querySelectorAll('.circle-button.active');
+    elements.forEach(element => {
+      element.classList.remove('active');
+    });
+  }
+
   setNextStep(): void {
     if (this.steps.length === 4) {
       this.status = 'victory';
@@ -52,6 +60,7 @@ export class SimonComponent {
       this.isClickable = true;
       const nextStep = this.getNextStep();
       this.steps.push(nextStep);
+      this.uiFlickerButton();
     }
   }
 
@@ -69,15 +78,19 @@ export class SimonComponent {
         if (this.userSteps.length === this.steps.length) {
           this.userSteps = [];
           this.isClickable = false;
-          this.setNextStep();
+          setTimeout(() => this.setNextStep(), 1500);
         }
       } else {
         this.status = 'mistake';
         this.userSteps = [];
-        this.isClickable = true;
 
         if (this.isStrict) {
           setTimeout(() => this.start(), 1500);
+        } else {
+          setTimeout(() => {
+            this.uiFlickerButton();
+            this.isClickable = true;
+          }, 1000, this);
         }
       }
     }
@@ -91,5 +104,48 @@ export class SimonComponent {
 
   _isNotStrictMode(): boolean {
     return this.status === 'progress' && !this.isStrict;
+  }
+
+  uiFlickerButton(): void {
+    const length = this.steps.length;
+    let index = 0;
+    const that = this;
+    let removeActiveClassInterval = null;
+
+    const interval = setInterval(() => {
+      clearInterval(removeActiveClassInterval);
+
+      if (index > length) {
+        that.removeActiveClass(that.steps[index - 1]);
+        clearInterval(interval);
+      } else {
+        if (index - 1 >= 0 ) {
+          removeActiveClassInterval = setInterval(
+            () => that.removeActiveClass(that.steps[index - 1]),
+            800
+          );
+        }
+
+        that.addActiveClass(that.steps[index]);
+        index++;
+      }
+
+    }, 1000);
+  }
+
+  addActiveClass(id: any): void {
+    const element = document.getElementById(id);
+    element.classList.add('active');
+  }
+
+  removeActiveClass(id: any): void {
+    const element = document.getElementById(id);
+    element.classList.remove('active');
+  }
+
+  clearAllIntervals(intervals: any[]) {
+    intervals.forEach(interval => {
+      clearInterval(interval);
+    });
   }
 }

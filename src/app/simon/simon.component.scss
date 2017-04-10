@@ -2,6 +2,10 @@ $main-width: 500px;
 $main-height: 500px;
 $border-width: 10px;
 $grey: #4a4a4a;
+$red: #f44336;
+$green: #4caf50;
+$blue: #2196f3;
+$yellow: #ffeb3b;
 
 .simon-game {
   display: flex;
@@ -48,6 +52,42 @@ $grey: #4a4a4a;
       .circle-button {
         height: 100%;
         width: 220px;
+
+        &.c-red {
+          background: $red;
+
+          &.is-clickable:active,
+          &.active {
+            background: #ea9a94;
+          }
+        }
+
+        &.c-green {
+          background: $green;
+
+          &.is-clickable:active,
+          &.active {
+            background: #85d088;
+          }
+        }
+
+        &.c-yellow {
+          background: $yellow;
+
+          &.is-clickable:active,
+          &.active {
+            background: #fffad1;
+          }
+        }
+
+        &.c-blue {
+          background: $blue;
+
+          &.is-clickable:active,
+          &.active {
+            background: #99d2ff;
+          }
+        }
 
         &:hover {
           cursor: auto;

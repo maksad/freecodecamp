@@ -4,25 +4,29 @@
       <div class="holder-circle-buttons">
         <div class="buttons-row">
           <div
+            id="1"
             [ngClass]="{'is-clickable': isClickable}"
-            class="circle-button green"
+            class="circle-button c-green"
             (click)="takeStep(1)"
           ></div>
           <div
+            id="2"
             [ngClass]="{'is-clickable': isClickable}"
-            class="circle-button red"
+            class="circle-button c-red"
             (click)="takeStep(2)"
           ></div>
         </div>
         <div class="buttons-row">
           <div
+            id="3"
             [ngClass]="{'is-clickable': isClickable}"
-            class="circle-button yellow"
+            class="circle-button c-yellow"
             (click)="takeStep(3)"
           ></div>
           <div
+            id="4"
             [ngClass]="{'is-clickable': isClickable}"
-            class="circle-button blue"
+            class="circle-button c-blue"
             (click)="takeStep(4)"
           ></div>
         </div>
