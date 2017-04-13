@@ -54,6 +54,7 @@ export class SimonComponent {
   setNextStep(): void {
     if (this.steps.length === 20) {
       this.status = 'victory';
+      this.playVictorySound();
     }
 
     if (this.status === 'progress' || this._isNotStrictMode()) {
@@ -71,6 +72,8 @@ export class SimonComponent {
 
   takeStep(step): void {
     if (this.isClickable) {
+      this.playAudioTrack(step);
+
       if (this.steps[this.userSteps.length] === step) {
         this.userSteps.push(step);
         this.status = 'progress';
@@ -85,6 +88,7 @@ export class SimonComponent {
         this.userSteps = [];
         this.removeAllActiveClasses();
         this.isClickable = false;
+        this.playMistakeSound();
 
         if (this.isStrict) {
           setTimeout(() => this.start(), 1000);
@@ -111,6 +115,7 @@ export class SimonComponent {
     const that = this;
     let counter = 0;
     this.isClickable = false;
+    next();
 
     function next() {
       if (counter < that.steps.length) {
@@ -121,18 +126,53 @@ export class SimonComponent {
         that.isClickable = true;
       }
     }
-    next();
   }
 
   flickerElement(index: any) {
     const element = document.getElementById(index);
+    const that = this;
     return new Promise((resolve) => {
       element.classList.add('active');
+      that.playAudioTrack(index);
 
       setTimeout(() => {
         element.classList.remove('active');
         resolve();
       }, 1000);
     });
+  }
+
+  playMistakeSound(): void {
+    const audio2 = document.getElementById('audio-2');
+    const audio4 = document.getElementById('audio-4');
+    audio2.play();
+    audio4.play();
+  }
+
+  playVictorySound(): void {
+    const audio1 = document.getElementById('audio-1');
+    const audio2 = document.getElementById('audio-2');
+    const audio3 = document.getElementById('audio-3');
+    const audio4 = document.getElementById('audio-4');
+
+    const audios = [audio1, audio2, audio3, audio4];
+    const counter = 0;
+
+    playSequential();
+
+    function playSequential() {
+      if (counter < 4) {
+        setTimeout(() => {
+          audios[counter].play();
+          counter++;
+          playSequential();
+        }, 50);
+      }
+    }
+  }
+
+  playAudioTrack(index: number) {
+    const audio = document.getElementById('audio-' + index);
+    audio.play();
   }
 }
