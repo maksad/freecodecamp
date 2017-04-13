@@ -52,7 +52,7 @@ export class SimonComponent {
   }
 
   setNextStep(): void {
-    if (this.steps.length === 4) {
+    if (this.steps.length === 20) {
       this.status = 'victory';
     }
 
@@ -78,19 +78,20 @@ export class SimonComponent {
         if (this.userSteps.length === this.steps.length) {
           this.userSteps = [];
           this.isClickable = false;
-          setTimeout(() => this.setNextStep(), 1500);
+          setTimeout(() => this.setNextStep(), 1000);
         }
       } else {
         this.status = 'mistake';
         this.userSteps = [];
+        this.removeAllActiveClasses();
+        this.isClickable = false;
 
         if (this.isStrict) {
-          setTimeout(() => this.start(), 1500);
+          setTimeout(() => this.start(), 1000);
         } else {
           setTimeout(() => {
             this.uiFlickerButton();
-            this.isClickable = true;
-          }, 1000, this);
+          }, 500, this);
         }
       }
     }
@@ -107,45 +108,31 @@ export class SimonComponent {
   }
 
   uiFlickerButton(): void {
-    const length = this.steps.length;
-    let index = 0;
     const that = this;
-    let removeActiveClassInterval = null;
+    let counter = 0;
+    this.isClickable = false;
 
-    const interval = setInterval(() => {
-      clearInterval(removeActiveClassInterval);
-
-      if (index > length) {
-        that.removeActiveClass(that.steps[index - 1]);
-        clearInterval(interval);
-      } else {
-        if (index - 1 >= 0 ) {
-          removeActiveClassInterval = setInterval(
-            () => that.removeActiveClass(that.steps[index - 1]),
-            800
-          );
-        }
-
-        that.addActiveClass(that.steps[index]);
-        index++;
+    function next() {
+      if (counter < that.steps.length) {
+        setTimeout(() => {
+          that.flickerElement(that.steps[counter++]).then(next);
+        }, 400);
+      } else if (counter >= that.steps.length) {
+        that.isClickable = true;
       }
-
-    }, 1000);
+    }
+    next();
   }
 
-  addActiveClass(id: any): void {
-    const element = document.getElementById(id);
-    element.classList.add('active');
-  }
+  flickerElement(index: any) {
+    const element = document.getElementById(index);
+    return new Promise((resolve) => {
+      element.classList.add('active');
 
-  removeActiveClass(id: any): void {
-    const element = document.getElementById(id);
-    element.classList.remove('active');
-  }
-
-  clearAllIntervals(intervals: any[]) {
-    intervals.forEach(interval => {
-      clearInterval(interval);
+      setTimeout(() => {
+        element.classList.remove('active');
+        resolve();
+      }, 1000);
     });
   }
 }
