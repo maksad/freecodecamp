@@ -1,2 +1,108 @@
 <div class="simon-game">
+  <audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" id="audio-1"></audio>
+  <audio src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" id="audio-2"></audio>
+  <audio src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3" id="audio-3"></audio>
+  <audio src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" id="audio-4"></audio>
+  <div class="wrapper">
+    <div class="holder">
+      <div class="holder-circle-buttons">
+        <div class="buttons-row">
+          <div
+            id="1"
+            [ngClass]="{'is-clickable': isClickable}"
+            class="circle-button c-green"
+            (click)="takeStep(1)"
+          ></div>
+          <div
+            id="2"
+            [ngClass]="{'is-clickable': isClickable}"
+            class="circle-button c-red"
+            (click)="takeStep(2)"
+          ></div>
+        </div>
+        <div class="buttons-row">
+          <div
+            id="3"
+            [ngClass]="{'is-clickable': isClickable}"
+            class="circle-button c-yellow"
+            (click)="takeStep(3)"
+          ></div>
+          <div
+            id="4"
+            [ngClass]="{'is-clickable': isClickable}"
+            class="circle-button c-blue"
+            (click)="takeStep(4)"
+          ></div>
+        </div>
+      </div>
+
+      <div class="center-holder">
+        <div class="center-circle">
+          <div class="header">simon<span class="small">®</span></div>
+          <div class="settings">
+            <div>
+              <dl>
+                <dt>
+                  <span *ngIf="steps.length === 0" class="counter">--</span>
+                  <span
+                    *ngIf="steps.length > 0 && status === 'progress'"
+                    class="counter"
+                  >{{steps.length}}</span>
+                  <span
+                    *ngIf="steps.length > 0 && status === 'mistake'"
+                    class="counter"
+                  >!!</span>
+                  <span
+                    *ngIf="steps.length > 0 && status === 'victory'"
+                    class="counter"
+                  >**</span>
+                </dt>
+                <dd>counter</dd>
+              </dl>
+
+              <dl>
+                <dt>
+                  <button
+                    [ngClass]="{'is-on': isOn}"
+                    class="start"
+                    (click)="start()"
+                  ></button>
+                </dt>
+                <dd>start</dd>
+              </dl>
+
+              <dl>
+                <dt>
+                  <button
+                    class="strict"
+                    [ngClass]="{'is-on': isOn, 'is-strict': isStrict}"
+                    (click)="toggleStrict()"
+                  ></button>
+                </dt>
+                <dd>strict</dd>
+              </dl>
+            </div>
+
+            <div class="power">
+              <div class="switch">
+                <label>
+                  off
+                  <input type="checkbox">
+                  <span class="lever" (click)="power()"></span>
+                  on
+                </label>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="author-caption center">
+  Created by
+  <a href="https://twitter.com/donayorov" target="_blank">
+    Maksad D.
+  </a>
 </div>

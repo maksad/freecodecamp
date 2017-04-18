@@ -1,0 +1,214 @@
+$main-width: 500px;
+$main-height: 500px;
+$border-width: 10px;
+$grey: #4a4a4a;
+$red: #f44336;
+$green: #4caf50;
+$blue: #2196f3;
+$yellow: #ffeb3b;
+
+.simon-game {
+  display: flex;
+  height: 100vh;
+
+  .wrapper {
+    width: $main-width;
+    height: $main-width;
+    margin: auto;
+  }
+
+  .holder {
+    width: $main-width;
+    height: $main-width;
+    border-radius: 100%;
+    display: block;
+    overflow: hidden;
+    background: #4a4a4a;
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .holder-circle-buttons {
+    border-radius: 100%;
+    overflow: hidden;
+    width: 460px;
+    height: 460px;
+    display: inline-block;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .buttons-row {
+      // height: ($main-height - 4 * $border-width)/2;
+      height: 220px;
+      width: ($main-width - 4 * $border-width);
+      display: flex;
+      justify-content: space-between;
+
+      .circle-button {
+        height: 100%;
+        width: 220px;
+
+        &.c-red {
+          background: $red;
+
+          &.is-clickable:active,
+          &.active {
+            background: #ea9a94;
+          }
+        }
+
+        &.c-green {
+          background: $green;
+
+          &.is-clickable:active,
+          &.active {
+            background: #85d088;
+          }
+        }
+
+        &.c-yellow {
+          background: $yellow;
+
+          &.is-clickable:active,
+          &.active {
+            background: #fffad1;
+          }
+        }
+
+        &.c-blue {
+          background: $blue;
+
+          &.is-clickable:active,
+          &.active {
+            background: #99d2ff;
+          }
+        }
+
+        &:hover {
+          cursor: auto;
+        }
+
+        &.is-clickable {
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .center-holder {
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    border-radius: 100%;
+    background: #4a4a4a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .center-circle {
+      width: 215px;
+      height: 215px;
+      background: #f5f5f5;
+      border-radius: 100%;
+
+      .header {
+        font-size: 44px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        height: 43%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        color: #4a4a4a;
+
+        span {
+          font-size: 23px;
+          text-shadow: none;
+          position: relative;
+          height: 56px;
+          padding-left: 2px;
+        }
+      }
+
+      .settings {
+        dl {
+          display: inline-flex;
+          width: 50px;
+          flex-direction: column;
+          font-family: monospace;
+          font-size: 11px;
+
+          dt {
+            font-size: 21px;
+
+            button {
+              height: 22px;
+              width: 22px;
+              border-radius: 100%;
+            }
+          }
+
+          dd {
+            margin: 0px;
+          }
+
+          button {
+            cursor: auto;
+
+            &.active {
+              outline: none;
+              background-color: #2ab7a9;
+            }
+
+            &.strict {
+              background-color: #c0c0c0;
+
+              &.is-strict {
+                background: #2ab7a9;
+              }
+            }
+
+            &.is-on {
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .power {
+          .switch label .lever {
+            border-radius: 0px;
+            width: 46px;
+            margin: 0 9px;
+
+            &::after {
+              box-shadow: none;
+              height: 13px;
+              border-radius: 0px;
+              top: 1px;
+            }
+          }
+
+          button {
+            background: transparent;
+            border: none;
+            padding: 0px;
+            line-height: 0;
+
+            &.is-on {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
